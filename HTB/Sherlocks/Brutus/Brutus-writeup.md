@@ -59,7 +59,7 @@ clearly standing out from normal traffic — a classic brute-force pattern.
 **Question:** The bruteforce attempts were successful and the attacker gained access to an account on the server. What is the username of that account?
 
 **Approach:**
-![T1b](2.jpg)
+![T2](2.jpg)
 ```bash
 grep 'Accepted password' auth.log | grep '65.2.161.68'
 ```
@@ -89,7 +89,7 @@ Since `utmpdump` was unavailable on the system (removed from newer versions of `
 ```
 
 **Finding:**
-![T2](3.jpg)
+![T3](3.jpg)
 ```
 "USER" "2549" "pts/1" "ts/1" "root" "65.2.161.68" "0" "0" "0" "2024/03/06 06:32:45" "387923" "65.2.161.68"
 ```
@@ -109,7 +109,7 @@ grep 'session' auth.log | grep '06:32:44'
 ```
 
 **Finding:**
-![T3](4.jpg)
+![T4](4.jpg)
 ```
 Mar  6 06:32:44 ip-172-31-35-28 systemd-logind[411]: New session 37 of user root.
 ```
